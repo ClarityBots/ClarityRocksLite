@@ -1,55 +1,30 @@
-/* style.css */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-
-main {
+  font-family: sans-serif;
+  background: #f9f9f9;
+  padding: 2rem;
   max-width: 600px;
-  margin: 60px auto;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  margin: auto;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 24px;
+  color: #ff7900;
 }
 
-form {
-  display: flex;
-  gap: 10px;
-}
-
-input[type="text"] {
-  flex: 1;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+input {
+  padding: 0.5rem;
+  width: 70%;
+  margin-right: 0.5rem;
 }
 
 button {
-  padding: 12px 20px;
-  font-size: 16px;
-  background-color: #FF7900;
+  padding: 0.5rem 1rem;
+  background: #f04e23;
   color: white;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #F04E23;
-}
-
-#result {
-  margin-top: 24px;
-  font-size: 18px;
+#response {
+  margin-top: 1rem;
   font-weight: bold;
 }
