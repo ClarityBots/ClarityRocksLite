@@ -1,19 +1,46 @@
+// server.js
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+import OpenAI from "openai";
 
+dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("."));
 
-app.post("/api/rock", (req, res) => {
-  const { input } = req.body;
-  const reply = `Let's clarify that Rock: "${input}"`;
-  res.json({ reply });
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
+
+app.post("/api/rock", async (req, res) => {
+  const prompt = req.body.prompt;
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        {
+          role: "system",
+          content: "You are a helpful EOS Implementer. Take input and return a short, clear Rock."
+        },
+        {
+          role: "user",
+          content: prompt
+        }
+      ]
+    });
+
+    const rock = completion.choices[0]?.message?.content?.trim();
+    res.json({ rock });
+  } catch (error) {
+    console.error("OpenAI error:", error);
+    res.status(500).json({ error: "Something went wrong." });
+  }
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server listening on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

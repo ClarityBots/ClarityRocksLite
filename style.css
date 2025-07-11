@@ -1,28 +1,55 @@
+/* style.css */
 body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background-color: #f4f4f4;
+  color: #333;
   margin: 0;
   padding: 0;
 }
-.container {
+
+main {
   max-width: 600px;
-  margin: 50px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
+
 h1 {
-  margin-top: 0;
+  text-align: center;
+  margin-bottom: 24px;
 }
-#conversation {
-  margin-bottom: 20px;
+
+form {
+  display: flex;
+  gap: 10px;
 }
-#userInput {
-  width: 80%;
-  padding: 10px;
-  margin-right: 10px;
+
+input[type="text"] {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
+
 button {
-  padding: 10px 15px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #FF7900;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #F04E23;
+}
+
+#result {
+  margin-top: 24px;
+  font-size: 18px;
+  font-weight: bold;
 }

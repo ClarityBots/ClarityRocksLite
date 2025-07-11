@@ -1,23 +1,31 @@
-document.getElementById("rockForm").addEventListener("submit", async (e) => {
+// app.js
+const form = document.querySelector("form");
+const input = document.querySelector("input");
+const result = document.getElementById("result");
+
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const input = document.getElementById("userInput").value;
-  if (!input.trim()) return;
 
-  const conversation = document.getElementById("conversation");
-  const userMsg = document.createElement("p");
-  userMsg.textContent = "🧑 " + input;
-  conversation.appendChild(userMsg);
+  const userInput = input.value.trim();
+  if (!userInput) return;
 
-  const response = await fetch("/api/rock", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ input }),
-  });
+  result.textContent = "Thinking...";
 
-  const data = await response.json();
-  const botMsg = document.createElement("p");
-  botMsg.textContent = "🤖 " + data.reply;
-  conversation.appendChild(botMsg);
+  try {
+    const response = await fetch("http://localhost:3001/api/rock", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ prompt: userInput })
+    });
 
-  document.getElementById("userInput").value = "";
+    const data = await response.json();
+    result.textContent = data.rock || "No rock returned.";
+  } catch (error) {
+    console.error("Error:", error);
+    result.textContent = "Something went wrong.";
+  }
+
+  input.value = "";
 });
